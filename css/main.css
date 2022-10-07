@@ -260,3 +260,13 @@ textarea {
     page-break-after: avoid;
   }
 }
+
+input:invalid{
+  border-color: #900;
+  background-color: #FDD;
+}
+input:valid{
+  border-color: #100;
+  background-color: #FDD;
+}
+
