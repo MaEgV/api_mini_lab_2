@@ -1,39 +1,13 @@
-import {setFormValue, submitSignUpForm, validateEmail, validatePassword} from "./utils.js"
-
-
-////// ДЕМОНСТРАЦИОННЫЙ УЧАСТОК КОДА. На оценку не влияет, исключительно для саморазвития.
-
-// Предлагаю "поиграться" с частями кода ниже, чтобы познакомиться с JS
-// Получаем элемент и меняем его класс, который определеён в библиотеке стилей materialize
-const password = document.getElementById('password');
-password.classList.add("valid")
-password.classList.remove("valid")
-
-// В браузере можно посмотреть, что из себя представляет документ
-// (CTRL+SHIFT+i для открытия консоли и открыть вкладку "консоль", туда будет залогированно значение)
-console.log("Document")
-console.log(document)
-
-// Если запросить id, которого нет в DOM дереве - вернется undefined
-// => надо быть осторожней: коллега может поменять id вашего элемента и упадёт !ВАШ! код
-// const first_name = document.getElementById('first_name_invalid');
-// first_name.oninput = (e) => validatePassword(e)
-
-// Селекция по классу. Может пригодится, для того, чтобы упростить обработку полей в двух формах.
-// Чтобы не делать кучу уникальных айди, можно определённым полям формы давать один класс и обрабатывать их в цикле
-// const passwords = document.querySelectorAll('.password')
-// console.log(passwords)
-// for (const password of passwords) {
-//   password.style.background = "red"
-// }
-
-////// КОНЕЦ ДЕМОНСТРАЦИОННОГО УЧАСТКА КОДА. Дальше код для оцениваемой части задания
-
+import {
+  setFormValue, submitSignUpForm, validateEmail, validatePassword, validatePasswordRepeat,
+  formValues, formValidation
+} from "./utils.js"
 
 // Выписываем все айдишники HTMl-элементов в константы для переиспользования
 const first_name_id = 'first_name'
 const last_name_id = 'last_name'
 const password_id = 'password'
+const password_repeat_id = 'password-repeat'
 const email_id = 'email'
 
 const sign_in_link_id = 'sign_in_link'
@@ -45,7 +19,7 @@ const sign_in_form_id = 'sign_in_form'
 
 // Получаем элемент DOM-дерева по id и присваиваем значение аттрибуту oninput
 // oninput вызывается с параметром "event" каждый раз, когда ввод меняется
-// Значение, которое мы присваеваем этому аттрибуту - это функция, определённая в стрелочном стиле
+// Значение, которое мы присваиваем этому аттрибуту - это функция, определённая в стрелочном стиле
 // Гуглить по тегам "события JS", "onchange/oninput HTML", "стрелочные функции JS", ...
 
 const first_name = document.getElementById(first_name_id);
@@ -54,10 +28,35 @@ first_name.oninput = (e) => setFormValue(first_name_id, e.target.value)  // Ус
 const email = document.getElementById(email_id);
 email.oninput = (e) => setFormValue(email_id, e.target.value, validateEmail) // Установить значение с валидацией
 
+const password = document.getElementById(password_id)
+password.oninput = (e) => setFormValue(password_id, e.target.value, validatePassword)
 
+const password_repeat = document.getElementById(password_repeat_id)
+password_repeat.oninput = (e) => {
+  // setFormValue(password_repeat_id, e.target.value, validatePasswordRepeat)
+  console.log("e.target.value: " + e.target.value)
+  console.log("formValues.password: " + formValues.password)
+  const regExp = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,32}$/
+  const status = (e.target.value === formValues.password && regExp.test(password_repeat.value));
+  console.log(status)
+
+  password_repeat.setAttribute("isvalid", status)
+  console.log("isvalid == " + password_repeat.getAttribute("isvalid"))
+
+  // if (status) {
+  //   password_repeat.classList.remove("invalid")
+  //   password_repeat.classList.add("valid")
+  // }
+  // else {
+  //   password_repeat.classList.remove("valid")
+  //   password_repeat.classList.add("invalid")
+  //   password_repeat.
+  // }
+
+}
 
 // Меняем стили объекта DOM дерева. Это позволяет скрыть форму регистрации и показать форму авторизации
-// Объект формы не исключается из DOM дерева, а просто становистя невидимым
+// Объект формы не исключается из DOM дерева, а просто становится невидимым
 const switch_to_sign_in = document.getElementById(sign_in_link_id);
 switch_to_sign_in.onclick = (e) => {
   document.getElementById(sign_up_form_id).style.display = "none"

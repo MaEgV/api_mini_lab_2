@@ -40,29 +40,31 @@
     <form class="col s12">
       <div class="row">
         <div class="input-field col s6">
-          <input id="first_name" type="text" class="validate">
+          <input id="first_name" type="text" class="validate" required>
           <label for="first_name">First Name</label>
         </div>
         <div class="input-field col s6">
-          <input id="last_name" type="text" class="validate">
+          <input id="last_name" type="text" class="validate" required>
           <label for="last_name">Last Name</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="email" type="email" class="validate">
+          <input id="email" type="email" class="validate" required>
           <label for="email">Email</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" type="password" class="validation password">
+          <input id="password" type="password" class="validate" required
+                 pattern="^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,32}$">
           <label for="password">Password</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password-repeat" type="password" class="validation password">
+          <input id="password-repeat" type="password" class="validate" required>
+<!--                 pattern="^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,32}$">-->
           <label for="password-repeat">Repeat password</label>
         </div>
       </div>
@@ -78,9 +80,33 @@
       <div class="underlined_text col s5" id="sign_in_link"> Sign in! </div>
     </div>
   </div>
-  <div class="form_container row" id="sign_in_form" style="display: none"> Place sign in form here </div>
+  <div class="form_container row" id="sign_in_form" style="display: none">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email_in" type="email" class="validate" required>
+          <label for="email_in">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password_in" type="password" class="validation password" required
+                 pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$">
+          <label for="password_in">Password</label>
+        </div>
+      </div>
+      <div class="row">
+        <button class="btn waves-effect waves-light col s4 offset-s4" type="submit" id="sign_in_btn">
+          Sign in
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+    </form>
+    <div class="row">
+  </div>
   <script src="https://www.google-analytics.com/analytics.js" async></script>
   <script type="module" src="js/main.js"></script>
+  </div>
 </div>
 </body>
 
