@@ -40,36 +40,34 @@
     <form class="col s12">
       <div class="row">
         <div class="input-field col s6">
-          <input id="first_name" type="text" class="validate" required>
+          <input id="first_name" type="text" class="validate">
           <label for="first_name">First Name</label>
         </div>
         <div class="input-field col s6">
-          <input id="last_name" type="text" class="validate" required>
+          <input id="last_name" type="text" class="validate">
           <label for="last_name">Last Name</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="email" type="email" class="validate" required>
+          <input id="email" type="email" required>
           <label for="email">Email</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" type="password" class="validate" required
-                 pattern="^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,32}$">
+          <input id="password" type="password" required>
           <label for="password">Password</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password-repeat" type="password" class="validate" required>
-<!--                 pattern="^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,32}$">-->
+          <input id="password-repeat" type="password" required>
           <label for="password-repeat">Repeat password</label>
         </div>
       </div>
       <div class="row">
-        <button class="btn waves-effect waves-light col s4 offset-s4" type="submit" id="sign_up_btn">
+        <button class="btn waves-effect waves-light col s4 offset-s4" type="submit" id="sign_up_btn" disabled>
           Sign up
           <i class="material-icons right">send</i>
         </button>
@@ -84,19 +82,18 @@
     <form class="col s12">
       <div class="row">
         <div class="input-field col s12">
-          <input id="email_in" type="email" class="validate" required>
-          <label for="email_in">Email</label>
+          <input id="email-in" type="email" required>
+          <label for="email-in">Email</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password_in" type="password" class="validation password" required
-                 pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$">
-          <label for="password_in">Password</label>
+          <input id="password-in" type="password" required>
+          <label for="password-in">Password</label>
         </div>
       </div>
       <div class="row">
-        <button class="btn waves-effect waves-light col s4 offset-s4" type="submit" id="sign_in_btn">
+        <button class="btn waves-effect waves-light col s4 offset-s4" type="submit" id="sign_in_btn" disabled>
           Sign in
           <i class="material-icons right">send</i>
         </button>

@@ -3,28 +3,29 @@ export const formValidation = {
 }  // Сюда пишутся статусы валидации каждого поля. Если поле ни разу не валидировалось,
 // то при обращении к Object вернётся undefined, который при логическом сравнении обрабатывается как false
 
+const passwordRegExp = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,32}$/
 
 // Объявляется и инициализируется константная переменная
 // Инициализация функцией, заданной в стрелочном виде
 export const validatePassword = (password) => {
-  formValidation.password = password
+  formValues.password = password.value
+  return passwordRegExp.test(password.value)
 }
 
 export const validatePasswordRepeat = (password_repeat) => {
-  formValidation.password_repeat = password_repeat
-
-  return formValidation.password === password_repeat
+  formValues.password_repeat = password_repeat.value
+  return passwordRegExp.test(password_repeat.value) &&
+      formValues.password === formValues.password_repeat
 }
 
 
 export const validateEmail = (email) => {
+  formValues.email = email.value
+
   // Создадим шаблон регулярного выражения. В нём применяются шаблонные строки
   // Гуглить по тегам: "шаблонные строки js", "регулярные выражения"
   const regExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-
-  return String(email)
-    .toLowerCase()
-    .match(regExp);
+  return regExp.test(email.value)
 }
 
 // Функция возвращающая true если все валидации пройдены, и false если хотя бы одна не пройдена
