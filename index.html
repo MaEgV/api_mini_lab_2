@@ -50,24 +50,24 @@
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="email" type="email" class="validate">
+          <input id="email" type="email" required>
           <label for="email">Email</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" type="password" class="validation password">
+          <input id="password" type="password" required>
           <label for="password">Password</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password-repeat" type="password" class="validation password">
+          <input id="password-repeat" type="password" required>
           <label for="password-repeat">Repeat password</label>
         </div>
       </div>
       <div class="row">
-        <button class="btn waves-effect waves-light col s4 offset-s4" type="submit" id="sign_up_btn">
+        <button class="btn waves-effect waves-light col s4 offset-s4" type="submit" id="sign_up_btn" disabled>
           Sign up
           <i class="material-icons right">send</i>
         </button>
@@ -78,9 +78,32 @@
       <div class="underlined_text col s5" id="sign_in_link"> Sign in! </div>
     </div>
   </div>
-  <div class="form_container row" id="sign_in_form" style="display: none"> Place sign in form here </div>
+  <div class="form_container row" id="sign_in_form" style="display: none">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email-in" type="email" required>
+          <label for="email-in">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password-in" type="password" required>
+          <label for="password-in">Password</label>
+        </div>
+      </div>
+      <div class="row">
+        <button class="btn waves-effect waves-light col s4 offset-s4" type="submit" id="sign_in_btn" disabled>
+          Sign in
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+    </form>
+    <div class="row">
+  </div>
   <script src="https://www.google-analytics.com/analytics.js" async></script>
   <script type="module" src="js/main.js"></script>
+  </div>
 </div>
 </body>
 
