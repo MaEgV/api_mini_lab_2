@@ -1,11 +1,10 @@
 import {
   setFormValue, submitSignUpForm, validateEmail, validatePassword, validatePasswordRepeat,
-  formValues, formValidation, getValidationStatus
+  formValidation, getValidationStatus
 } from "./utils.js"
 
 // Выписываем все айдишники HTMl-элементов в константы для переиспользования
 const first_name_id = 'first_name'
-const last_name_id = 'last_name'
 const password_id = 'password'
 const password_repeat_id = 'password-repeat'
 const password_in_id = 'password-in'
@@ -83,9 +82,12 @@ function updateValidity() {
 // Меняем стили объекта DOM дерева. Это позволяет скрыть форму регистрации и показать форму авторизации
 // Объект формы не исключается из DOM дерева, а просто становится невидимым
 const switch_to_sign_in = document.getElementById(sign_in_link_id);
-switch_to_sign_in.onclick = (e) => {
+switch_to_sign_in.onclick = () => {
   document.getElementById(sign_up_form_id).style.display = "none"
   document.getElementById(sign_in_form_id).style.display = ""
+
+  for (const member in formValidation)
+    delete formValidation[member]
 }
 
 
