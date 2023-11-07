@@ -1,20 +1,24 @@
-import {setFormValue, submitSignUpForm, validateEmail, validatePassword} from "./utils.js"
-
-const first_name_id = 'first_name'
-const last_name_id = 'last_name'
-const password_id = 'password'
-const email_id = 'email'
+import {setFormValue, submitSignUpForm, validateEmail, validatePassword, validateRepeatedPassword} from "./utils.js"
 
 const sign_in_link_id = 'sign_in_link'
 const sign_up_form_id = 'sign_up_form'
 const sign_up_btn_id = 'sign_up_btn'
 const sign_in_form_id = 'sign_in_form'
 
-const first_name = document.getElementById(first_name_id);
-first_name.oninput = (e) => setFormValue(first_name_id, e.target.value)
+const first_name = document.getElementById('first_name');
+first_name.oninput = (e) => setFormValue('first_name', e.target)
 
-const email = document.getElementById(email_id);
-email.oninput = (e) => setFormValue(email_id, e.target.value, validateEmail)
+const last_name = document.getElementById('last_name');
+last_name.oninput = (e) => setFormValue('last_name', e.target)
+
+const email = document.getElementById('email');
+email.oninput = (e) => setFormValue('email', e.target, validateEmail)
+
+const password = document.getElementById('password');
+password.oninput = (e) => setFormValue('password', e.target, validatePassword)
+
+const passwordRepeat = document.getElementById('password-repeat');
+passwordRepeat.oninput = (e) => setFormValue('password-repeat', e.target, validateRepeatedPassword)
 
 const switch_to_sign_in = document.getElementById(sign_in_link_id);
 switch_to_sign_in.onclick = (e) => {

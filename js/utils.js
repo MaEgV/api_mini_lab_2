@@ -3,24 +3,29 @@ const formValues = {}
 // Сюда пишутся статусы валидации каждого поля. Если поле ни разу не валидировалось,
 const formValidation = {}
 
-export const validatePassword = (e) => {
-  formValidation.password = e.target.value
-  return formValidation.password !== undefined
-}
-
-export const validateEmail = (email) => {
+export const validateEmail = email => {
   const regExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i
   return regExp.rest(email)
+}
+export const validatePassword = password => {
+  const regExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+  return regExp.test(password)
+}
+let is_repeated_password_touched = false
+export const validateRepeatedPassword = repeatedPassword => {
+  return is_repeated_password_touched && formValues.password == repeatedPassword
 }
 
 export const getValidationStatus = () => {
   return Object.values(formValidation).every((validationStatus) => !!validationStatus)
 }
 
-export const setFormValue = (valueKey, newValue, validator) => {
-  formValues[valueKey] = newValue
-  if (validator !== undefined) {
-    formValidation[valueKey] = validator(newValue)
+export const setFormValue = (valueKey, target, validator) => {
+  formValues[valueKey] = target.value
+  if (validator) {
+    formValidation[valueKey] = validator(target.value)
+    target.classList.remove('invalid', 'valid')
+    target.classList.add(formValidation[valueKey] ? 'valid' : 'invalid')
   }
 }
 
