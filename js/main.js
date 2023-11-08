@@ -1,32 +1,37 @@
 import {setFormValue, submitSignUpForm, validateEmail, validatePassword, validateRepeatedPassword} from "./utils.js"
 
-const sign_in_link_id = 'sign_in_link'
-const sign_up_form_id = 'sign_up_form'
-const sign_up_btn_id = 'sign_up_btn'
-const sign_in_form_id = 'sign_in_form'
+const sign_up_form = document.getElementById('sign_up_form')
+const sign_in_form = document.getElementById('sign_in_form')
 
-const first_name = document.getElementById('first_name');
-first_name.oninput = (e) => setFormValue('first_name', e.target)
+const switch_to_sign_in_btn = document.getElementById('sign_in_link');
+const switch_to_sign_up_btn = document.getElementById('sign_up_link');
 
-const last_name = document.getElementById('last_name');
-last_name.oninput = (e) => setFormValue('last_name', e.target)
+const validationFiels = [
+  {name: 'first_name'},
+  {name: 'last_name'},
+  {name: 'email', validator: validateEmail},
+  {name: 'password', validator: validatePassword},
+  {name: 'password-repeat', validator: validateRepeatedPassword},
+]
 
-const email = document.getElementById('email');
-email.oninput = (e) => setFormValue('email', e.target, validateEmail)
+validationFiels.forEach(({name, validator}) => {
+  const inputs = document.querySelectorAll(`input[name="${name}"]`)
+  inputs.forEach((input) => {
+    input.oninput = (e) => setFormValue(name, e.target, validator)
+  })
+})
 
-const password = document.getElementById('password');
-password.oninput = (e) => setFormValue('password', e.target, validatePassword)
-
-const passwordRepeat = document.getElementById('password-repeat');
-passwordRepeat.oninput = (e) => setFormValue('password-repeat', e.target, validateRepeatedPassword)
-
-const switch_to_sign_in = document.getElementById(sign_in_link_id);
-switch_to_sign_in.onclick = (e) => {
-  document.getElementById(sign_up_form_id).style.display = "none"
-  document.getElementById(sign_in_form_id).style.display = ""
+sign_in_form.style.display = "none"
+switch_to_sign_in_btn.onclick = (e) => {
+  sign_up_form.style.display = "none"
+  sign_in_form.style.display = ""
+}
+switch_to_sign_up_btn.onclick = (e) => {
+  sign_up_form.style.display = ""
+  sign_in_form.style.display = "none"
 }
 
-const sign_up_btn = document.getElementById(sign_up_btn_id);
+const sign_up_btn = document.getElementById('sign_up_btn');
 sign_up_btn.onclick = (e) => {
   e.preventDefault()
   submitSignUpForm()

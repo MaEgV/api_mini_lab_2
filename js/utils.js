@@ -5,15 +5,14 @@ const formValidation = {}
 
 export const validateEmail = email => {
   const regExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i
-  return regExp.rest(email)
+  return regExp.test(email)
 }
 export const validatePassword = password => {
   const regExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
   return regExp.test(password)
 }
-let is_repeated_password_touched = false
 export const validateRepeatedPassword = repeatedPassword => {
-  return is_repeated_password_touched && formValues.password == repeatedPassword
+  return formValues.password == repeatedPassword
 }
 
 export const getValidationStatus = () => {
