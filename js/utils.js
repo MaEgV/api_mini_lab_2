@@ -30,10 +30,19 @@ export const setFormValue = (valueKey, target, validator) => {
 
 export const submitSignUpForm = () => {
   if (!getValidationStatus()) {
-    console.log("FORM IS INCORRECT")
+    console.log("SIGN UP FORM IS INCORRECT")
     return false
   }
-  console.log("FORM IS FINE")
+  console.log("SIGN UP FORM IS FINE")
+  console.log(formValues)
+  return true
+}
+export const submitSignInForm = () => {
+  if (!getValidationStatus()) {
+    console.log("SIGN IN FORM IS INCORRECT")
+    return false
+  }
+  console.log("SIGN IN FORM IS FINE")
   console.log(formValues)
   return true
 }

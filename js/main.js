@@ -1,10 +1,20 @@
-import {setFormValue, submitSignUpForm, validateEmail, validatePassword, validateRepeatedPassword} from "./utils.js"
+import {
+  setFormValue,
+  submitSignUpForm,
+  submitSignInForm,
+  validateEmail,
+  validatePassword,
+  validateRepeatedPassword
+} from "./utils.js"
 
 const sign_up_form = document.getElementById('sign_up_form')
 const sign_in_form = document.getElementById('sign_in_form')
 
 const switch_to_sign_in_btn = document.getElementById('sign_in_link');
 const switch_to_sign_up_btn = document.getElementById('sign_up_link');
+
+const sign_up_btn = document.getElementById('sign_up_btn');
+const sign_in_btn = document.getElementById('sign_in_btn');
 
 const validationFiels = [
   {name: 'first_name'},
@@ -31,8 +41,11 @@ switch_to_sign_up_btn.onclick = (e) => {
   sign_in_form.style.display = "none"
 }
 
-const sign_up_btn = document.getElementById('sign_up_btn');
 sign_up_btn.onclick = (e) => {
   e.preventDefault()
   submitSignUpForm()
+}
+sign_in_btn.onclick = (e) => {
+  e.preventDefault()
+  submitSignInForm()
 }
