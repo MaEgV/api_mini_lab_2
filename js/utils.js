@@ -15,8 +15,11 @@ export const validateRepeatedPassword = repeatedPassword => {
   return formValues.password == repeatedPassword
 }
 
-export const getValidationStatus = () => {
-  return Object.values(formValidation).every((validationStatus) => !!validationStatus)
+export const getValidationStatus = (form) => {
+  const inputs = [...form.querySelectorAll('input')]
+  return inputs.every(input => {
+    return input.value && formValidation[input.name]
+  })
 }
 
 export const setFormValue = (valueKey, target, validator) => {
@@ -25,24 +28,21 @@ export const setFormValue = (valueKey, target, validator) => {
     formValidation[valueKey] = validator(target.value)
     target.classList.remove('invalid', 'valid')
     target.classList.add(formValidation[valueKey] ? 'valid' : 'invalid')
+  } else {
+    formValidation[valueKey] = true
   }
 }
 
-export const submitSignUpForm = () => {
-  if (!getValidationStatus()) {
-    console.log("SIGN UP FORM IS INCORRECT")
-    return false
-  }
-  console.log("SIGN UP FORM IS FINE")
-  console.log(formValues)
-  return true
+export const validateForm = (form, submitButton) => {
+  submitButton.disabled = !getValidationStatus(form)
 }
-export const submitSignInForm = () => {
-  if (!getValidationStatus()) {
-    console.log("SIGN IN FORM IS INCORRECT")
+
+export const submitForm = (form) => {
+  if (!getValidationStatus(form)) {
+    console.log("FORM IS INCORRECT")
     return false
   }
-  console.log("SIGN IN FORM IS FINE")
+  console.log("FORM IS FINE")
   console.log(formValues)
   return true
 }
